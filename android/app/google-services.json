@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "913423956950",
+    "project_id": "i2c2-edtech",
+    "storage_bucket": "i2c2-edtech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913423956950:android:6309f3d89fb006ddb60277",
+        "android_client_info": {
+          "package_name": "com.example.i2c2_hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913423956950-iue2jrhrduiv8stobajljhe6glcl5ojb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMaoPaiuxsluF1gOh3lcbt9AgE0R0Wkyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913423956950-iue2jrhrduiv8stobajljhe6glcl5ojb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
