@@ -4,6 +4,7 @@ import 'package:i2c2_hackathon/LoginScreen.dart';
 import 'package:i2c2_hackathon/authPage.dart';
 import 'package:i2c2_hackathon/homeScreen.dart';
 import 'package:i2c2_hackathon/NavigationBar.dart';
+import 'package:i2c2_hackathon/onboardingpage.dart';
 import 'package:i2c2_hackathon/signin_options.dart';
 import 'package:i2c2_hackathon/signin_signup.dart/student_signin.dart';
 import 'package:i2c2_hackathon/teachers/CatagoryDetailpage.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Authpage(),
+      home: const OnboardingScreen(),
     );
   }
 }

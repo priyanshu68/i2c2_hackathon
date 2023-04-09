@@ -9,6 +9,8 @@ import 'package:i2c2_hackathon/Catagorytile.dart';
 import 'package:i2c2_hackathon/Coursetile.dart';
 import 'package:i2c2_hackathon/LoginScreen.dart';
 import 'package:i2c2_hackathon/searchscreen.dart';
+import 'package:i2c2_hackathon/studentCategoryPage.dart';
+import 'package:i2c2_hackathon/teachers/CatagoryDetailpage.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -26,15 +28,22 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   List<Widget> _widgetoptions = [HomeScreen(), SearchPage()];
 
+  List Images = [
+    "assets/imgs/Math.png",
+    "assets/imgs/coding.png",
+    "assets/imgs/networking.png",
+    "assets/imgs/Atom.png",
+    "assets/imgs/eng.png",
+    "assets/imgs/data-science.png"
+  ];
+
   List catagory = [
     "Maths",
     "Development",
-    "Data science",
-    "Cryptography",
-    "Cryptography",
-    "Development",
-    "Development",
-    "Development",
+    "Networking",
+    "Physics",
+    "English",
+    "Data Science",
   ];
   List Courses = [
     "Maths",
@@ -136,7 +145,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         itemCount: catagory.length,
                         itemBuilder: ((context, index) {
-                          return CatagoryTile(catagory: catagory[index]);
+                          List<Color> colors = [
+                            Color(0xffDAD3C8),
+                            Color(0xffFFE5DE),
+                            Color(0xffDCF6E6),
+                            Color.fromARGB(255, 53, 123, 163),
+                            Color.fromARGB(255, 74, 135, 193),
+                            Color.fromARGB(255, 162, 66, 245),
+                          ];
+                          // Choose a color based on the index
+                          Color color = colors[index % colors.length];
+                          return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudentCategoryDetails(
+                                              category: catagory[index],
+                                            )));
+                              },
+                              child: CatagoryTile(
+                                catagory: catagory[index],
+                                color: colors[index],
+                                ImagePath: Images[index],
+                              ));
                         })),
                   ),
                   Padding(
@@ -154,7 +187,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView.builder(
                           itemCount: Courses.length,
                           itemBuilder: ((context, index) {
-                            return CourseTile(course: Courses[index]);
+                            return CourseTile(
+                              course: Courses[index],
+                              ImagePath: Images[index],
+                            );
                           }))),
                   // Text(
                   //   "The end",

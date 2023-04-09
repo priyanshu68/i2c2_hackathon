@@ -10,6 +10,7 @@ import 'package:i2c2_hackathon/Coursetile.dart';
 import 'package:i2c2_hackathon/LoginScreen.dart';
 import 'package:i2c2_hackathon/searchscreen.dart';
 import 'package:i2c2_hackathon/teachers/CatagoryDetailpage.dart';
+import 'package:i2c2_hackathon/teachers/demo.dart';
 import 'package:i2c2_hackathon/teachers/teachercategorytile.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,7 +26,16 @@ class TeacherScreen extends StatefulWidget {
 class _TeacherScreenState extends State<TeacherScreen> {
   bool isdark = false;
   FirebaseAuth auth = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser!;
   int currentIndex = 0;
+  List Images = [
+    "assets/imgs/Math.png",
+    "assets/imgs/coding.png",
+    "assets/imgs/networking.png",
+    "assets/imgs/Atom.png",
+    "assets/imgs/eng.png",
+    "assets/imgs/data-science.png"
+  ];
 
   List catagory = [
     "Maths",
@@ -81,7 +91,11 @@ class _TeacherScreenState extends State<TeacherScreen> {
                                     color:
                                         isdark ? Colors.white : Colors.black),
                               ),
-                              Text("Neha", style: TextStyle(fontSize: 30))
+                              Container(
+                                width: 140,
+                                child: Text(user.email.toString(),
+                                    style: TextStyle(fontSize: 20)),
+                              )
                             ],
                           ),
                         ],
@@ -120,7 +134,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Catagories",
+                      "Categories",
                       style: GoogleFonts.roboto(
                           fontSize: 24, fontWeight: FontWeight.w500),
                     ),
@@ -135,6 +149,14 @@ class _TeacherScreenState extends State<TeacherScreen> {
                         scrollDirection: Axis.horizontal,
                         itemCount: catagory.length,
                         itemBuilder: ((context, index) {
+                          List<Color> colors = [
+                            Color(0xffDAD3C8),
+                            Color(0xffFFE5DE),
+                            Color(0xffDCF6E6),
+                            Color.fromARGB(255, 53, 123, 163),
+                            Color.fromARGB(255, 74, 135, 193),
+                            Color.fromARGB(255, 162, 66, 245),
+                          ];
                           return InkWell(
                             onTap: () {
                               Navigator.push(
@@ -145,6 +167,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
                                           )));
                             },
                             child: TeacherCategoryTile(
+                              ImagePath: Images[index],
+                              color: colors[index],
                               catagory: catagory[index],
                             ),
                           );
@@ -161,11 +185,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
                     ),
                   ),
                   Center(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            showAboutDialog(context: context);
-                          },
-                          child: Text("data")))
+                      child:
+                          IconButton(onPressed: () {}, icon: Icon(Icons.add)))
                 ],
               ),
             ),

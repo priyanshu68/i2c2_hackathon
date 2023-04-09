@@ -15,12 +15,7 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
-  List<Widget> _widgetoptions = [
-    HomeScreen(),
-    SearchPage(),
-    CourseDetail(),
-    AccountDetails()
-  ];
+  List<Widget> _widgetoptions = [HomeScreen(), SearchPage(), AccountDetails()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,14 +54,6 @@ class _NavbarState extends State<Navbar> {
                 icon: Icons.home_outlined,
                 text: 'Home',
                 textColor: Color.fromARGB(255, 178, 59, 199),
-              ),
-              GButton(
-                iconColor: Colors.grey[700],
-                backgroundColor: Color.fromARGB(255, 243, 224, 199),
-                iconActiveColor: Color.fromARGB(255, 219, 152, 65),
-                icon: Icons.settings_outlined,
-                text: 'Likes',
-                textColor: Color.fromARGB(255, 219, 152, 65),
               ),
               GButton(
                 iconColor: Colors.grey[700],

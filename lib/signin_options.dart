@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i2c2_hackathon/auth/Student_auth.dart';
+
+import 'package:i2c2_hackathon/auth/Teacher_auth_page.dart';
 import 'package:i2c2_hackathon/signin_signup.dart/student_signin.dart';
 import 'package:i2c2_hackathon/signin_signup.dart/teacherssignin.dart';
 
@@ -24,7 +27,7 @@ class SiginOption extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TeacherSigin()));
+                              builder: (context) => Teacher_Auth()));
                     },
                     child: Text('Login as Teacher')),
                 ElevatedButton(
@@ -32,7 +35,7 @@ class SiginOption extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => StudentSignin()));
+                              builder: (context) => Student_auth()));
                     },
                     child: Text('Login as Student'))
               ],

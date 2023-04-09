@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i2c2_hackathon/LoginScreen.dart';
+import 'package:i2c2_hackathon/signin_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherAccount extends StatefulWidget {
@@ -13,6 +14,7 @@ class TeacherAccount extends StatefulWidget {
 
 class _TeacherAccountState extends State<TeacherAccount> {
   FirebaseAuth auth = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
               await auth.signOut();
               final prefs = await SharedPreferences.getInstance();
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+                  MaterialPageRoute(builder: (context) => SiginOption()));
               prefs.setBool('isLoggedIn', false);
             },
             icon: Icon(Icons.logout_outlined),
@@ -63,7 +65,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
               height: 20,
             ),
             Text(
-              "Neha Mahapatra",
+              user.email.toString(),
               style:
                   GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.w400),
             ),

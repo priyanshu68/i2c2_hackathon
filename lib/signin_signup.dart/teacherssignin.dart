@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:i2c2_hackathon/teachers/NavigationbarTeacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:i2c2_hackathon/teachers/NavigationbarTeacher.dart';
+
 class TeacherSigin extends StatefulWidget {
-  const TeacherSigin({super.key});
+  final VoidCallback showSignup;
+  const TeacherSigin({
+    Key? key,
+    required this.showSignup,
+  }) : super(key: key);
 
   @override
   State<TeacherSigin> createState() => _TeacherSiginState();
@@ -22,7 +28,7 @@ class _TeacherSiginState extends State<TeacherSigin> {
       print("Logined as Teacher");
 
       final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool('isLoggedIn', true);
+      prefs.setBool('isLoggedIn', true);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => TeacherNav()));
     } on FirebaseAuthException catch (e) {
@@ -109,7 +115,7 @@ class _TeacherSiginState extends State<TeacherSigin> {
                           color: Color.fromARGB(255, 84, 84, 84), fontSize: 14),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: widget.showSignup,
                       child: Text(
                         "Create Account",
                         style: TextStyle(fontSize: 14),

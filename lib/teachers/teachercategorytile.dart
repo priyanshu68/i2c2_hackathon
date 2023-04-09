@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 
 class TeacherCategoryTile extends StatelessWidget {
   final String catagory;
+   final Color color;
+    final String ImagePath;
 
   const TeacherCategoryTile({
     Key? key,
     required this.catagory,
+    required this.color,
+    required this.ImagePath,
   }) : super(key: key);
 
   @override
@@ -19,10 +23,10 @@ class TeacherCategoryTile extends StatelessWidget {
           width: 90,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Color.fromARGB(255, 242, 113, 53)),
+              color:color),
           child: Center(
               child: Image.asset(
-            "assets/imgs/Login2.png",
+            ImagePath,
             fit: BoxFit.cover,
           )),
         ),

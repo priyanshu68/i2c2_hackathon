@@ -47,6 +47,8 @@ dependencies:
   http: ^0.13.5
   google_nav_bar: ^5.0.6
   flutter_speed_dial: ^6.2.0
+  file_picker: ^5.2.7
+  video_player: ^2.6.1
   
  
 
@@ -83,6 +85,18 @@ flutter:
     - assets/imgs/maths1.jpg
     - assets/imgs/siginstu.png
     - assets/imgs/signinteach.png
+    - assets/imgs/signupteach.png
+    - assets/imgs/signupstu.png
+    - assets/videos/video1.webm
+    - assets/imgs/Math.png
+    - assets/imgs/coding.png
+    - assets/imgs/networking.png
+    - assets/imgs/Atom.png
+    - assets/imgs/eng.png
+    - assets/imgs/data-science.png
+    - assets/imgs/image1.png
+    - assets/imgs/image2.png
+    - assets/imgs/image3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -95,11 +109,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-Light.ttf
+        - asset: assets/fonts/Mulish-SemiBold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

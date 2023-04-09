@@ -1,54 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:i2c2_hackathon/NavigationBar.dart';
-
-class StudentSignin extends StatefulWidget {
-  final VoidCallback showsignUp;
-  const StudentSignin({
+class StudentSignUp extends StatefulWidget {
+  final VoidCallback showSignIn;
+  const StudentSignUp({
     Key? key,
-    required this.showsignUp,
+    required this.showSignIn,
   }) : super(key: key);
 
   @override
-  State<StudentSignin> createState() => _StudentSigninState();
+  State<StudentSignUp> createState() => _StudentSignUpState();
 }
 
-class _StudentSigninState extends State<StudentSignin> {
+class _StudentSignUpState extends State<StudentSignUp> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
-  Future _signin() async {
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.text.trim(), password: password.text.trim());
-
-      print("Logined as student");
-
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setBool('isLoggedIn', true);
-
-      email.clear();
-      password.clear();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Navbar()));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    }
-  }
-
-  void dispose() {
-    email.dispose();
-    password.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +26,12 @@ class _StudentSigninState extends State<StudentSignin> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/imgs/siginstu.png",
+                  "assets/imgs/signupstu.png",
                   height: 300,
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Login into your Account',
+                  'Create an  Account',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -109,8 +75,8 @@ class _StudentSigninState extends State<StudentSignin> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () => _signin(),
-                  child: Text('Sign In'),
+                  onPressed: () {},
+                  child: Text('Sign Up'),
                   style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 247, 152, 43),
                       fixedSize: Size(170, 40)),
@@ -119,14 +85,14 @@ class _StudentSigninState extends State<StudentSignin> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Have an account?",
                       style: TextStyle(
                           color: Color.fromARGB(255, 84, 84, 84), fontSize: 14),
                     ),
                     TextButton(
-                      onPressed: widget.showsignUp,
+                      onPressed: widget.showSignIn,
                       child: Text(
-                        "Create One",
+                        "Sign In",
                         style: TextStyle(fontSize: 14),
                       ),
                     ),

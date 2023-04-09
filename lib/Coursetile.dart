@@ -4,9 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CourseTile extends StatelessWidget {
   final String course;
+  final String ImagePath;
   const CourseTile({
     Key? key,
     required this.course,
+    required this.ImagePath,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class CourseTile extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage('assets/imgs/login1.png'),
+                  backgroundImage: AssetImage(ImagePath),
                 ),
                 SizedBox(
                   width: 20,

@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 
 class CatagoryTile extends StatelessWidget {
   final String catagory;
+  final Color color;
+  final String ImagePath;
+
   const CatagoryTile({
     Key? key,
     required this.catagory,
+    required this.color,
+    required this.ImagePath,
   }) : super(key: key);
 
   @override
@@ -16,18 +21,16 @@ class CatagoryTile extends StatelessWidget {
           height: 90,
           width: 90,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Color.fromARGB(255, 242, 113, 53)),
+              borderRadius: BorderRadius.circular(16), color: color),
           child: Center(
               child: Image.asset(
-            "assets/imgs/Login2.png",
-            fit: BoxFit.cover,
+            ImagePath,
           )),
         ),
         SizedBox(
           height: 10,
         ),
-        Text("Subjects")
+        Text(catagory)
       ],
     );
   }

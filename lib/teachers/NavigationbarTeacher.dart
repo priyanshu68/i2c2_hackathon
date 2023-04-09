@@ -59,8 +59,8 @@ class _TeacherNavState extends State<TeacherNav> {
                 iconColor: Colors.grey[700],
                 backgroundColor: Color.fromARGB(255, 243, 224, 199),
                 iconActiveColor: Color.fromARGB(255, 219, 152, 65),
-                icon: Icons.play_circle,
-                text: 'Likes',
+                icon: Icons.person_outlined,
+                text: 'Profile',
                 textColor: Color.fromARGB(255, 219, 152, 65),
               ),
               GButton(
@@ -71,14 +71,6 @@ class _TeacherNavState extends State<TeacherNav> {
                 text: 'Search',
                 textColor: Color.fromARGB(255, 68, 215, 181),
               ),
-              GButton(
-                iconColor: Colors.grey[700],
-                backgroundColor: Color.fromARGB(255, 238, 181, 191),
-                iconActiveColor: Color.fromARGB(255, 213, 68, 92),
-                icon: Icons.person_outlined,
-                text: 'Profile',
-                textColor: Color.fromARGB(255, 213, 68, 92),
-              )
             ],
           ),
         ),
