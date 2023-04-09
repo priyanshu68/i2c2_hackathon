@@ -1,15 +1,48 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:i2c2_hackathon/NavigationBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class StudentSignin extends StatefulWidget {
+  const StudentSignin({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<StudentSignin> createState() => _StudentSigninState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _StudentSigninState extends State<StudentSignin> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  Future _signin() async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+
+      print("Logined as student");
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', true);
+
+      email.clear();
+      password.clear();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Navbar()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +73,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 9.0),
                     child: TextField(
+                      controller: email,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Your e-mail address'),
@@ -58,6 +92,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 9.0),
                     child: TextField(
+                      controller: password,
                       decoration: InputDecoration(
                           border: InputBorder.none, hintText: 'Password'),
                       obscureText: true,
@@ -68,9 +103,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'otp');
-                  },
+                  onPressed: () => _signin(),
                   child: Text('Sign In'),
                   style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 247, 152, 43),

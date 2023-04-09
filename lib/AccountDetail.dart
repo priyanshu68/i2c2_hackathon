@@ -20,13 +20,14 @@ class _AccountDetailsState extends State<AccountDetails> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton( onPressed: () async {
-                await auth.signOut();
-                final prefs = await SharedPreferences.getInstance();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-                prefs.setBool('isLoggedIn', false);
-              }, icon: Icon(Icons.logout_outlined))
+              IconButton(
+                  onPressed: () async {
+                    await auth.signOut();
+                    final prefs = await SharedPreferences.getInstance();
+                    Navigator.pop(context);
+                    prefs.setBool('isLoggedIn', false);
+                  },
+                  icon: Icon(Icons.logout_outlined))
             ],
           ),
         ),

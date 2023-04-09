@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i2c2_hackathon/homeScreen.dart';
+import 'package:i2c2_hackathon/signin_options.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +30,7 @@ class _AuthpageState extends State<Authpage> {
                 return HomeScreen();
               } else {
                 // navigate to the login page
-                return LoginPage();
+                return SiginOption();
               }
             } else {
               return CircularProgressIndicator();
